@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>
+**Unraid templates by Giuseppe Giardina** ([Your Future Me](https://yourfuture.me)).
+
+This repository holds the Community Apps template for [WatchSense](https://github.com/peppeg/watchsense): self-hosted TV series recommendations driven by your own viewing history (Netflix, Prime Video, Stremio, Trakt) and an OpenAI-compatible LLM of your choice, cloud or local. All data stays in a single SQLite file on your server.
+
+The app itself is MIT-licensed and developed at https://github.com/peppeg/watchsense. Bugs and questions: https://github.com/peppeg/watchsense/issues (or Discussions on the same repository).
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/peppeg/unraid-templates/main/icon.svg</Icon>
+  <WebPage>https://github.com/peppeg/unraid-templates</WebPage>
+  <!-- TODO: add the Unraid forum support thread once it exists -->
+  <!-- <Forum>https://forums.unraid.net/topic/NNNNN-support-watchsense/</Forum> -->
+</CommunityApplications>

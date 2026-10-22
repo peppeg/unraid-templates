@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>WatchSense</Name>
+  <Repository>ghcr.io/peppeg/watchsense:latest</Repository>
+  <Registry>https://ghcr.io/peppeg/watchsense</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Icon>https://raw.githubusercontent.com/peppeg/watchsense/main/ui/public/icon.svg</Icon>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <Overview>WatchSense suggests TV series to watch next, based on your own viewing history and an LLM of your choice. It imports what you watched on Netflix (session cookies with automatic sync, bookmarklet or CSV), Prime Video (bookmarklet or CSV), Stremio (account sync) and Trakt (data export), enriches it with TMDB metadata (posters, genres, streaming providers of your region) and asks any OpenAI-compatible endpoint, cloud (OpenRouter, OpenAI, Groq, Mistral, ...) or local (Ollama, LM Studio), for recommendations. Your ratings, show status and taste notes shape the next suggestions.
+
+TV series only: films found in your histories are stored but not shown or used. Disney+, Apple TV+ and other services without a viewing history are not imported.
+
+All data stays on your server in one SQLite file plus the key that encrypts saved secrets (/app/data). The free TMDB API key and the LLM provider are set in Settings on first start; the environment variables below are optional. The UI is in English and Italian.</Overview>
+  <!-- TODO: replace with the Unraid forum support thread once it exists -->
+  <Support>https://github.com/peppeg/watchsense/issues</Support>
+  <Project>https://github.com/peppeg/watchsense</Project>
+  <TemplateURL>https://raw.githubusercontent.com/peppeg/unraid-templates/main/templates/watchsense.xml</TemplateURL>
+  <ReadMe>https://github.com/peppeg/watchsense#readme</ReadMe>
+  <Category>MediaApp:Video</Category>
+  <ExtraSearchTerms>tv series shows recommendations netflix prime stremio trakt tmdb llm ai ollama</ExtraSearchTerms>
+  <Requires>A free TMDB API key (themoviedb.org) and an OpenAI-compatible LLM endpoint, cloud or local (e.g. Ollama). Both can be set in Settings after the first start.</Requires>
+  <Changes>
+### 1.1.0
+- PUID/PGID support: at startup the container gives /app/data to PUID:PGID (99:100 on Unraid) and then drops root.
+  </Changes>
+  <Date>2026-10-22</Date>
+  <License>MIT</License>
+  <Screenshot>https://raw.githubusercontent.com/peppeg/watchsense/main/docs/screenshots/en/home.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/peppeg/watchsense/main/docs/screenshots/en/recommendations.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/peppeg/watchsense/main/docs/screenshots/en/library.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/peppeg/watchsense/main/docs/screenshots/en/show-detail.webp</Screenshot>
+
+  <Config Name="WebUI" Target="3000" Default="3000" Mode="tcp" Description="HTTP port of the web interface." Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="Appdata" Target="/app/data" Default="/mnt/user/appdata/watchsense/data" Mode="rw" Description="Database (watchsense.db) and secret.key, the key that encrypts saved secrets. Back up both together." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/watchsense/data</Config>
+  <Config Name="Trakt exports" Target="/app/exports" Default="/mnt/user/appdata/watchsense/exports" Mode="ro" Description="Optional, read-only. Only for the Trakt import: put the files of your Trakt data export in its trakt/ subfolder." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/watchsense/exports</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Description="User ID the app runs as. At startup /app/data is given to PUID:PGID if needed. Unraid default: 99 (nobody)." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Description="Group ID the app runs as. Unraid default: 100 (users)." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="TMDB API key" Target="TMDB_API_KEY" Default="" Description="Optional. TMDB v3 API key (32 hex characters). A key saved in Settings takes precedence." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="LLM base URL" Target="LLM_BASE_URL" Default="" Description="Optional. Base URL of an OpenAI-compatible provider, e.g. https://openrouter.ai/api/v1 or http://192.168.1.10:11434/v1 for Ollama. Settings take precedence." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="LLM API key" Target="LLM_API_KEY" Default="" Description="Optional. API key of the LLM provider (not needed for local addresses). Settings take precedence." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="LLM model" Target="LLM_MODEL" Default="" Description="Optional. Model name, e.g. deepseek/deepseek-chat. Settings take precedence." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="Access token" Target="WATCHSENSE_TOKEN" Default="" Description="Optional. When set, the web interface asks for this token. Empty = no login." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="Secret key" Target="WATCHSENSE_SECRET_KEY" Default="" Description="Optional. Key that encrypts saved secrets: 64 hex characters or 32 bytes in base64 (openssl rand -base64 32). Empty = /app/data/secret.key, created on first start." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+</Container>
