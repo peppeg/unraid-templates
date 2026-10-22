@@ -13,8 +13,7 @@
 TV series only: films found in your histories are stored but not shown or used. Disney+, Apple TV+ and other services without a viewing history are not imported.
 
 All data stays on your server in one SQLite file plus the key that encrypts saved secrets (/app/data). The free TMDB API key and the LLM provider are set in Settings on first start; the environment variables below are optional. The UI is in English and Italian.</Overview>
-  <!-- TODO: replace with the Unraid forum support thread once it exists -->
-  <Support>https://github.com/peppeg/watchsense/issues</Support>
+  <Support>https://github.com/peppeg/watchsense/discussions</Support>
   <Project>https://github.com/peppeg/watchsense</Project>
   <TemplateURL>https://raw.githubusercontent.com/peppeg/unraid-templates/main/templates/watchsense.xml</TemplateURL>
   <ReadMe>https://github.com/peppeg/watchsense#readme</ReadMe>
