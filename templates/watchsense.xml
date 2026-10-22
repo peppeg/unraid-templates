@@ -21,6 +21,9 @@ All data stays on your server in one SQLite file plus the key that encrypts save
   <ExtraSearchTerms>tv series shows recommendations netflix prime stremio trakt tmdb llm ai ollama</ExtraSearchTerms>
   <Requires>A free TMDB API key (themoviedb.org) and an OpenAI-compatible LLM endpoint, cloud or local (e.g. Ollama). Both can be set in Settings after the first start.</Requires>
   <Changes>
+### 1.1.1
+- Error messages follow the app language (English or Italian); server logs in English.
+
 ### 1.1.0
 - PUID/PGID support: at startup the container gives /app/data to PUID:PGID (99:100 on Unraid) and then drops root.
   </Changes>
