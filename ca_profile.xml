@@ -9,6 +9,4 @@ The app itself is MIT-licensed and developed at https://github.com/peppeg/watchs
   </Profile>
   <Icon>https://raw.githubusercontent.com/peppeg/unraid-templates/main/icon.svg</Icon>
   <WebPage>https://github.com/peppeg/unraid-templates</WebPage>
-  <!-- TODO: add the Unraid forum support thread once it exists -->
-  <!-- <Forum>https://forums.unraid.net/topic/NNNNN-support-watchsense/</Forum> -->
 </CommunityApplications>
